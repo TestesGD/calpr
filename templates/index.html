@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <header class="navbar">
+      <h1>Calculadora de Áreas</h1>
+      <input
+        type="checkbox"
+        id="menu-toggle"
+        class="menu-checkbox"
+        title="Toggle menu"
+      />
+      <label for="menu-toggle" class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+      <nav class="nav-links">
+        <a href="#triangulo">Triângulo</a>
+        <a href="#retangulo">Retângulo</a>
+        <a href="#circulo">Círculo</a>
+        <button type="button" id="temabtn">Tema</button>
+      </nav>
+      <div class="side-menu">
+        <a href="#triangulo">Triângulo</a>
+        <a href="#retangulo">Retângulo</a>
+        <a href="#circulo">Círculo</a>
+        <button type="button" id="temabtn-mobile">Tema</button>
+      </div>
+    </header>
+    <div class="content">
+      <div class="card">
+        <h2>Triângulo</h2>
+        <form action="/area_tri" method="post">
+          <label for="base">Base:</label>
+          <input
+            type="number"
+            step="any"
+            name="base"
+            placeholder="Base"
+            required
+          />
+          <label for="altura">Altura:</label>
+          <input
+            type="number"
+            step="any"
+            name="altura"
+            placeholder="Altura"
+            required
+          />
+          <button type="submit">Calcular</button>
+        </form>
+        {% if area_tri %}
+        <p>Área: {{ area_tri }}</p>
+        {% endif %}
+      </div>
+      <div class="card">
+        <h2>retângulo</h2>
+        <form action="/area_ret" method="post">
+          <label for="base">Base:</label>
+          <input
+            type="number"
+            step="any"
+            name="base"
+            placeholder="Base"
+            required
+          />
+          <label for="altura">Altura:</label>
+          <input
+            type="number"
+            step="any"
+            name="altura"
+            placeholder="Altura"
+            required
+          />
+          <button type="submit">Calcular</button>
+        </form>
+        {% if area_ret %}
+        <p>Área: {{ area_ret }}</p>
+        {% endif %}
+      </div>
+      <div class="card">
+        <h2>Círculo</h2>
+        <form action="/area_c" method="post">
+          <label for="raio">Raio:</label>
+          <input
+            type="number"
+            step="any"
+            name="raio"
+            placeholder="Raio"
+            required
+          />
+          <button type="submit">Calcular</button>
+        </form>
+        {% if area_c %}
+        <p>Área: {{ area_c }}</p>
+        {% endif %}
+      </div>
+      <div class="card">
+        <h2>Peças</h2>
+        <form action="/pecas" method="POST">
+          <label>Área (m²):</label>
+          <input
+            type="number"
+            step="any"
+            name="area"
+            placeholder="Área (m²)"
+            required
+          />
+
+          <label>Largura da peça (cm):</label>
+          <input
+            type="number"
+            step="any"
+            name="largura"
+            placeholder="Largura da peça (cm)"
+            required
+          />
+
+          <label>Altura da peça (cm):</label>
+          <input
+            type="number"
+            step="any"
+            name="altura"
+            placeholder="Altura da peça (cm)"
+            required
+          />
+
+          <label>Tipo de corte:</label>
+          <select name="tipo" aria-label="Tipo de corte">
+            <option value="reto">Reto</option>
+            <option value="cortes">Cortes</option>
+            <option value="diagonal">Diagonal</option>
+          </select>
+
+          <button type="submit">Calcular peças</button>
+        </form>
+        {% if pecas_result %}
+        <p>São necessárias {{ pecas_result }} peças.</p>
+        {% endif %}
+      </div>
+    </div>
+    <a href="/db">
+      <button>ir para db</button>
+    </a>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>

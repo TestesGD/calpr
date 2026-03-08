@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-br ">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EngHub</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+
+  <body>
+    <header>
+      <h1>Calculadora de Áreas</h1>
+      <nav>
+        <a href="#triangulo">Triângulo</a>
+        <a href="#retangulo">Retângulo</a>
+        <a href="#circulo">Círculo</a>
+        <button id="temabtn">Tema</button>
+      </nav>
+    </header>
+
+    <form action="{{ url_for('db') }}" method="post">
+      <label for="nome">Nome:</label>
+      <input type="text" name="nome" placeholder="Digite seu nome" required />
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        name="email"
+        placeholder="Digite seu email"
+        required
+      />
+      <button type="submit">Enviar</button>
+    </form>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+
+  <h2>lista de usuarios</h2>
+  <form action="/db/pesquisar" method="POST">
+    <input type="text" name="nome" placeholder="Pesquisar" />
+
+    <button type="submit">Pesquisar</button>
+  </form>
+  <table id="lista">
+    <tr>
+      <th>id</th>
+      <th>nome</th>
+      <th>email</th>
+    </tr>
+    {%for u in usuarios%}
+    <tr>
+      <td>{{u[0]}}</td>
+      <td>{{u[1]}}</td>
+      <td>{{u[2]}}</td>
+      <td>
+        <a href="{{url_for('deletar', id = u[0])}}#lista">
+          <button>Deletar</button>
+        </a>
+      </td>
+      <td>
+        <a href="{{ url_for('editar', id=u[0]) }}">
+          <button>Editar</button>
+        </a>
+      </td>
+    </tr>
+    {%endfor%}
+  </table>
+</html>

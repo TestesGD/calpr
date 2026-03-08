@@ -1,0 +1,126 @@
+:root {
+  --bg: white;
+  --color: black;
+  --ca: rgba(255, 201, 120, 0.742);
+}
+
+.dark {
+  --bg: black;
+  --color: white;
+  --ca: rgb(80, 53, 4);
+}
+body {
+  background-color: var(--bg);
+  color: var(--color);
+  transition: 0.3s;
+  margin: 0;
+  height: 150vh;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: var(--ca);
+  color: var(--color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+header h1 {
+  font-size: 24px;
+  font-weight: 20px;
+}
+nav {
+  display: flex;
+  gap: 15px;
+}
+nav a {
+  color: var(--color);
+  text-decoration: none;
+}
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  width: 25px;
+  height: 20px;
+  position: absolute;
+  right: 20px;
+  top: 25px;
+  z-index: 1001;
+}
+.hamburger span {
+  height: 3px;
+  background-color: var(--color);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+.menu-checkbox {
+  display: none;
+}
+.side-menu {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: var(--ca);
+  overflow-x: hidden;
+  transition: width 0.3s ease;
+  padding-top: 70px;
+  z-index: 1000;
+}
+.side-menu a {
+  padding: 12px 24px;
+  text-decoration: none;
+  color: #ffffff;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+.side-menu button {
+  padding: 12px 24px;
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  justify-content: left;
+  transition: background-color 0.3s ease;
+}
+.side-menu a:hover {
+  background-color: #1a3b6c;
+}
+.side-menu button:hover {
+  background-color: #1a3b6c;
+}
+.menu-checkbox:checked ~ .side-menu {
+  width: 250px;
+}
+.menu-checkbox:checked + .hamburger span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-checkbox:checked + .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+.menu-checkbox:checked + .hamburger span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+@media (max-width: 780px) {
+  header h1 {
+    font-size: 18px;
+  }
+  .hamburger {
+    display: flex;
+  }
+  nav {
+    display: none;
+  }
+  .nav-links {
+    display: none;
+  }
+}
